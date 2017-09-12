@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloController {
 	
+	
 	@RequestMapping(value="/hello", method=RequestMethod.GET)
     @ResponseBody
     public String hello(@RequestParam String message) {
@@ -23,4 +24,11 @@ public class HelloController {
 //        return "Hello " + message + "!";
 //    }
    
+	//JSP
+//	@RequestMapping("/hello")
+//    public String hello(ModelMap modelMap, @RequestParam String message) {
+//        modelMap.addAttribute("message", message);
+//        return "hello";
+//    }
+	
 }
