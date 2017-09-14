@@ -1,8 +1,8 @@
 package com.example.springrest.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +21,8 @@ public class UserController {
 	private UserJpaRepository userJpaRepository; 
 	
 	@GetMapping(value="")
-	public List<User> findAll() {
-		return (List<User>) userJpaRepository.findAll();
+	public Page<User> findAll(Pageable p) {
+		return userJpaRepository.findAll(p);
 	}
 	
 	@GetMapping(value="/+{id}")
@@ -35,8 +35,8 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/load")
-	public List<User> load(@RequestBody final User user) {
-		userJpaRepository.save(user);
-		return userJpaRepository.findByName(user.getFirstName());
+	public User load(@RequestBody final User user) {
+		User u = userJpaRepository.save(user);
+		return u;
 	}
 }
